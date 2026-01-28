@@ -52,3 +52,7 @@ jobs:
           sed -i "s|IMAGE_PLACEHOLDER|$IMAGE|g" k8s/deployment.yaml
           kubectl apply -f k8s/deployment.yaml
           kubectl apply -f k8s/service.yaml
+          # Force pods to re-pull image (safe rolling restart)
+          kubectl rollout restart deployment/nginx-app
+          # Status: wait until rollout completes
+          kubectl rollout status deployment/nginx-app
