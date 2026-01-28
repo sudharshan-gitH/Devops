@@ -32,10 +32,10 @@ jobs:
 
       - name: Build and Push Docker Image
         run: |
-          IMAGE=${{ secrets.GAR_LOCATION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GAR_REPO }}/$IMAGE_NAME:${{ github.sha }}
-          docker build -t $IMAGE .
-          docker push $IMAGE
-          echo "IMAGE=$IMAGE" >> $GITHUB_ENV
+           IMAGE=us-central1-docker.pkg.dev/lexical-cider-482012-i7/nginx-repo/nginx-app:${{ github.sha }}
+           docker build -t $IMAGE .
+           docker push $IMAGE
+           echo "IMAGE=$IMAGE" >> $GITHUB_ENV
 
       - name: Get GKE credentials
         run: |
