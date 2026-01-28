@@ -37,6 +37,10 @@ jobs:
            docker push $IMAGE
            echo "IMAGE=$IMAGE" >> $GITHUB_ENV
 
+      - name: Install GKE auth plugin
+        run: |
+           gcloud components install gke-gcloud-auth-plugin --quiet
+
       - name: Get GKE credentials
         run: |
           gcloud container clusters get-credentials nginx-cluster \
